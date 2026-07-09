@@ -1,0 +1,25 @@
+[project]
+name = "lumina_nivr2"
+description = "Lumina NIVR2: Native ComfyUI implementation of SeedVR2 video upscaling, built on comfy.ops / comfy.model_patcher / comfy-kitchen / comfy-aimdo instead of a bespoke runtime."
+version = "0.1.0"
+authors = [
+    {name = "Doudoulix"}
+]
+license = {file = "LICENSE"}
+classifiers = [
+     "Operating System :: OS Independent"
+]
+dependencies = [
+    "torch",
+    "einops",
+    "opencv-python",
+    "numpy",
+]
+
+[project.urls]
+Repository = "https://github.com/Doudoulix/Lumina_NIVR2"
+
+[tool.comfy]
+PublisherId = "lumina"
+DisplayName = "Lumina NIVR2"
+includes = []
