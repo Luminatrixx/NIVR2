@@ -1,0 +1,675 @@
+{
+  "id": "96b89a69-329e-4259-81b9-9b7125ea7e5e",
+  "revision": 0,
+  "last_node_id": 48,
+  "last_link_id": 78,
+  "nodes": [
+    {
+      "id": 39,
+      "type": "VAELoader",
+      "pos": [
+        4898.472867042686,
+        -1091.0192812527403
+      ],
+      "size": [
+        270,
+        58
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "VAE",
+          "type": "VAE",
+          "links": [
+            65
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "VAELoader",
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "input_ue_unconnectable": {},
+          "version": "7.7.1"
+        }
+      },
+      "widgets_values": [
+        "ema_vae_fp16.safetensors"
+      ]
+    },
+    {
+      "id": 41,
+      "type": "LuminaNIVR2PatchVAE",
+      "pos": [
+        5224.238957723594,
+        -1052.9187417509338
+      ],
+      "size": [
+        270,
+        58
+      ],
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 65
+        }
+      ],
+      "outputs": [
+        {
+          "name": "VAE",
+          "type": "VAE",
+          "links": [
+            64,
+            67
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LuminaNIVR2PatchVAE",
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "input_ue_unconnectable": {},
+          "version": "7.7.1"
+        }
+      },
+      "widgets_values": [
+        4
+      ]
+    },
+    {
+      "id": 42,
+      "type": "VAEEncodeTiled",
+      "pos": [
+        5595.464700348478,
+        -1362.6798432148855
+      ],
+      "size": [
+        270,
+        150
+      ],
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "pixels",
+          "type": "IMAGE",
+          "link": 66
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 67
+        }
+      ],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            69
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "VAEEncodeTiled",
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "input_ue_unconnectable": {},
+          "version": "7.7.1"
+        }
+      },
+      "widgets_values": [
+        1024,
+        128,
+        128,
+        8
+      ]
+    },
+    {
+      "id": 43,
+      "type": "LuminaNIVR2TextEmbedding",
+      "pos": [
+        5594.783771488163,
+        -1159.4762398131195
+      ],
+      "size": [
+        275.99289587440614,
+        62.12376020912734
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "links": [
+            70
+          ]
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "links": [
+            71
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LuminaNIVR2TextEmbedding",
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "input_ue_unconnectable": {},
+          "version": "7.7.1"
+        }
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 44,
+      "type": "LuminaNIVR2PatchDiT",
+      "pos": [
+        5912.873333160408,
+        -1232.6722232671293
+      ],
+      "size": [
+        270,
+        166
+      ],
+      "flags": {},
+      "order": 7,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 68
+        },
+        {
+          "name": "condition_latent",
+          "type": "LATENT",
+          "link": 69
+        },
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 70
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 71
+        }
+      ],
+      "outputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "links": [
+            72
+          ]
+        },
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "links": [
+            73
+          ]
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "links": [
+            74
+          ]
+        },
+        {
+          "name": "latent",
+          "type": "LATENT",
+          "links": [
+            75
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LuminaNIVR2PatchDiT",
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "input_ue_unconnectable": {},
+          "version": "7.7.1"
+        }
+      },
+      "widgets_values": [
+        1,
+        0,
+        "none"
+      ]
+    },
+    {
+      "id": 45,
+      "type": "KSampler",
+      "pos": [
+        6618.321070148853,
+        -705.9510962500079
+      ],
+      "size": [
+        270,
+        262
+      ],
+      "flags": {},
+      "order": 8,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "model",
+          "type": "MODEL",
+          "link": 72
+        },
+        {
+          "name": "positive",
+          "type": "CONDITIONING",
+          "link": 73
+        },
+        {
+          "name": "negative",
+          "type": "CONDITIONING",
+          "link": 74
+        },
+        {
+          "name": "latent_image",
+          "type": "LATENT",
+          "link": 75
+        }
+      ],
+      "outputs": [
+        {
+          "name": "LATENT",
+          "type": "LATENT",
+          "links": [
+            63
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "KSampler",
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "input_ue_unconnectable": {},
+          "version": "7.7.1"
+        }
+      },
+      "widgets_values": [
+        2077,
+        "fixed",
+        2,
+        1,
+        "er_sde",
+        "linear_quadratic",
+        1
+      ]
+    },
+    {
+      "id": 46,
+      "type": "RTXVideoSuperResolution",
+      "pos": [
+        5145.000513362958,
+        -1480.8449475488735
+      ],
+      "size": [
+        285.81015625,
+        106
+      ],
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 76
+        }
+      ],
+      "outputs": [
+        {
+          "name": "upscaled_images",
+          "type": "IMAGE",
+          "links": [
+            66
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "RTXVideoSuperResolution",
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "input_ue_unconnectable": {},
+          "version": "7.7.1"
+        }
+      },
+      "widgets_values": [
+        "scale by multiplier",
+        2,
+        "ULTRA"
+      ]
+    },
+    {
+      "id": 47,
+      "type": "UNETLoader",
+      "pos": [
+        5036.23241133487,
+        -1292.2166634551822
+      ],
+      "size": [
+        270,
+        82
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            68
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "UNETLoader",
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "input_ue_unconnectable": {},
+          "version": "7.7.1"
+        }
+      },
+      "widgets_values": [
+        "seedvr2_7b_int8_convrot.safetensors",
+        "default"
+      ]
+    },
+    {
+      "id": 9,
+      "type": "LoadImage",
+      "pos": [
+        4441.754408738421,
+        -1405.8908174656028
+      ],
+      "size": [
+        385.0567828186986,
+        326
+      ],
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            76
+          ]
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadImage",
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "input_ue_unconnectable": {},
+          "version": "7.7.1"
+        }
+      },
+      "widgets_values": [
+        "ZIB___02932_.png",
+        "image"
+      ]
+    },
+    {
+      "id": 40,
+      "type": "VAEDecodeTiled",
+      "pos": [
+        6920.215752331925,
+        -758.1136352939616
+      ],
+      "size": [
+        270,
+        150
+      ],
+      "flags": {},
+      "order": 9,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "samples",
+          "type": "LATENT",
+          "link": 63
+        },
+        {
+          "name": "vae",
+          "type": "VAE",
+          "link": 64
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            78
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "VAEDecodeTiled",
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "input_ue_unconnectable": {},
+          "version": "7.7.1"
+        }
+      },
+      "widgets_values": [
+        1024,
+        128,
+        128,
+        8
+      ]
+    },
+    {
+      "id": 48,
+      "type": "SaveImage",
+      "pos": [
+        7284.722814540014,
+        -796.4342838958415
+      ],
+      "size": [
+        270,
+        58
+      ],
+      "flags": {},
+      "order": 10,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 78
+        }
+      ],
+      "outputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "links": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "SaveImage",
+        "ue_properties": {
+          "widget_ue_connectable": {},
+          "input_ue_unconnectable": {},
+          "version": "7.7.1"
+        }
+      },
+      "widgets_values": [
+        "SeedVR2\\SVR_"
+      ]
+    }
+  ],
+  "links": [
+    [
+      63,
+      45,
+      0,
+      40,
+      0,
+      "LATENT"
+    ],
+    [
+      64,
+      41,
+      0,
+      40,
+      1,
+      "VAE"
+    ],
+    [
+      65,
+      39,
+      0,
+      41,
+      0,
+      "VAE"
+    ],
+    [
+      66,
+      46,
+      0,
+      42,
+      0,
+      "IMAGE"
+    ],
+    [
+      67,
+      41,
+      0,
+      42,
+      1,
+      "VAE"
+    ],
+    [
+      68,
+      47,
+      0,
+      44,
+      0,
+      "MODEL"
+    ],
+    [
+      69,
+      42,
+      0,
+      44,
+      1,
+      "LATENT"
+    ],
+    [
+      70,
+      43,
+      0,
+      44,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      71,
+      43,
+      1,
+      44,
+      3,
+      "CONDITIONING"
+    ],
+    [
+      72,
+      44,
+      0,
+      45,
+      0,
+      "MODEL"
+    ],
+    [
+      73,
+      44,
+      1,
+      45,
+      1,
+      "CONDITIONING"
+    ],
+    [
+      74,
+      44,
+      2,
+      45,
+      2,
+      "CONDITIONING"
+    ],
+    [
+      75,
+      44,
+      3,
+      45,
+      3,
+      "LATENT"
+    ],
+    [
+      76,
+      9,
+      0,
+      46,
+      0,
+      "IMAGE"
+    ],
+    [
+      78,
+      40,
+      0,
+      48,
+      0,
+      "IMAGE"
+    ]
+  ],
+  "groups": [],
+  "config": {},
+  "extra": {
+    "ue_links": [],
+    "links_added_by_ue": [],
+    "ds": {
+      "scale": 0.5989500000000012,
+      "offset": [
+        -4064.308311044113,
+        1983.436286635018
+      ]
+    },
+    "frontendVersion": "1.45.20",
+    "VHS_latentpreview": false,
+    "VHS_latentpreviewrate": 0,
+    "VHS_MetadataImage": true,
+    "VHS_KeepIntermediate": true
+  },
+  "version": 0.4
+}
