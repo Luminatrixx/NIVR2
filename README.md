@@ -113,12 +113,17 @@ Then restart ComfyUI.
 
 ## Model File Layout
 
+Download the SeedVR2 model files from [Comfy-Org/SeedVR2 on Hugging Face](https://huggingface.co/Comfy-Org/SeedVR2), then place them in the folders below.
+
 On import, the extension registers these folders with ComfyUI:
 
 - `ComfyUI/models/nivr2_dit/`
 - `ComfyUI/models/nivr2_vae/`
 
-That means the native loader dropdowns will discover SeedVR2 files from those locations automatically.
+That means the native loader dropdowns will discover SeedVR2 files from those locations automatically. You can also use ComfyUI's native model folders:
+
+- `ComfyUI/models/diffusion_models/`
+- `ComfyUI/models/vae/`
 
 ### Conditioning assets
 
