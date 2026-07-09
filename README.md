@@ -90,7 +90,7 @@ This port is designed around modern ComfyUI builds that already bundle the nativ
 
 ## Installation
 
-### Option 1: ComfyUI Manager
+### Option 1: ComfyUI Manager (To be soon available)
 
 Install the repo through ComfyUI Manager, then restart ComfyUI.
 
