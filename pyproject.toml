@@ -17,7 +17,7 @@ dependencies = [
 ]
 
 [project.urls]
-Repository = "https://github.com/Doudoulix/Lumina_NIVR2"
+Repository = "https://github.com/Luminatrixx/NIVR2"
 
 [tool.comfy]
 PublisherId = "lumina"
